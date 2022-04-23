@@ -1,0 +1,13 @@
+toggle {
+    permission blockreach.base
+    hook reachtoggle
+    help A command to toggle reach
+    user player
+}
+
+range double:dist {
+    permission blockreach.base
+    help A command to change distance of Reach
+    hook reachdist
+    user player
+}

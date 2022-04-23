@@ -1,0 +1,6 @@
+name: BlockReach
+version: '${version}'
+main: me.zodd.blockreach.BlockReach
+api-version: 1.18
+authors: [ Zodd ]
+website: https://zodd.me/
