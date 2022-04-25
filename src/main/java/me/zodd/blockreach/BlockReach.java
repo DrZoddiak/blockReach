@@ -1,5 +1,6 @@
 package me.zodd.blockreach;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,6 +17,7 @@ public final class BlockReach extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(new ClickListener(), this);
+        new ReachMap().registerTask();
         new CommandParser(this.getResource("command.rdcml")).parse().register("reach", this);
     }
 
@@ -32,10 +34,10 @@ public final class BlockReach extends JavaPlugin {
 
         if(rMap.containsKey(id)) {
             rMap.remove(id);
-            sender.sendMessage("Removed from Reach!");
+            sender.sendActionBar(Component.text("Reach Disabled!"));
         } else {
             rMap.put(id,defaultValue);
-            sender.sendMessage("Enabled Reach!");
+            sender.sendActionBar(Component.text("Reach Enabled!"));
         }
     }
 

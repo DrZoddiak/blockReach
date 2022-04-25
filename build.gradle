@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'me.zodd'
-version = '1.0'
+version = '1.0-REV1'
 
 repositories {
     mavenCentral()
@@ -32,6 +32,10 @@ java {
     if (JavaVersion.current() < javaVersion) {
         toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
     }
+}
+
+shadowJar {
+   // archiveAppendix.set(project.version)
 }
 
 tasks.withType(JavaCompile).configureEach {
