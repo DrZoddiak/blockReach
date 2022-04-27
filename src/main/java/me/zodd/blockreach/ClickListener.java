@@ -15,15 +15,17 @@ import org.bukkit.util.RayTraceResult;
 import java.util.*;
 
 public class ClickListener implements Listener {
-    List<Material> swords = new ArrayList<>(MaterialTags.SWORDS.getValues().stream().toList());
+    private final List<Material> swords = new ArrayList<>(MaterialTags.SWORDS.getValues().stream().toList());
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         UUID id = p.getUniqueId();
-        Map<UUID,Double> map = ReachMap.map;
 
         if (!p.hasPermission("blockreach.base")) return;
+
+        Map<UUID,Double> map = ReachMap.map;
+
         if(!map.containsKey(id)) return;
 
         Double maxDistance = map.get(id);
@@ -42,7 +44,6 @@ public class ClickListener implements Listener {
         //Build
         if (e.getAction().isRightClick()) {
             if (!e.isBlockInHand()) return;
-
             Location loc = result.getHitPosition().toLocation(p.getWorld());
             BlockFace face = result.getHitBlockFace();
 

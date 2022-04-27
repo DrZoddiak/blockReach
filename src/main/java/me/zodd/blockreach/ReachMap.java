@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import redempt.redlib.misc.Task;
 
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -17,7 +18,11 @@ public class ReachMap {
                 uuid -> {
                     Player p = Bukkit.getPlayer(uuid);
                     if (p == null) {
-                        map.remove(uuid);
+                        try {
+                            map.remove(uuid);
+                        } catch (ConcurrentModificationException e) {
+                            //TODO
+                        }
                         return;
                     }
                     p.sendActionBar(Component.text("Reach Active!"));
